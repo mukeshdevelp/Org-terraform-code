@@ -163,3 +163,11 @@ variable "ipam_pools" {
     customer         = { cidr = "10.10.0.0/16", description = "Customer pool" }
   }
 }
+
+variable sandbox_email{
+  
+  type = string
+  description = "sandbox email value"
+  default = ""
+
+}

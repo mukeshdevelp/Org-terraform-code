@@ -81,7 +81,7 @@ locals {
     }
     sandbox = {
       name      = "OPT-SBX-ENG-001"
-      email     = "CHANGE_ME+sandbox@opstree.com"
+      email     = var.sandbox_email
       parent_ou = "sandbox"
       tags      = { Team = "engineering", Environment = "sandbox" }
     }
