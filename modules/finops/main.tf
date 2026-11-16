@@ -13,9 +13,14 @@ resource "aws_cur_report_definition" "org" {
   depends_on = [aws_s3_bucket_policy.cur]
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
 
-data "aws_caller_identity" "current" {}
+}
+
+# getting the current caller identity
+data "aws_caller_identity" "current" {
+
+}
 
 data "aws_iam_policy_document" "cur_bucket" {
   statement {

@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+
 resource "aws_guardduty_detector" "this" {
   enable = true
   tags   = var.tags
@@ -26,7 +27,9 @@ resource "aws_securityhub_standards_subscription" "cis" {
   depends_on    = [aws_securityhub_account.this]
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
+  
+}
 
 resource "aws_config_configuration_aggregator" "organization" {
   name = "opstree-org-aggregator"

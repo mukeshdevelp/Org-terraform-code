@@ -22,7 +22,7 @@ locals {
   organization_id = var.create_organization ? aws_organizations_organization.this[0].id : var.organization_id
   root_id         = data.aws_organizations_organization.current.roots[0].id
 }
-
+# organization unit 
 resource "aws_organizations_organizational_unit" "this" {
   for_each = var.organizational_units
 
@@ -30,6 +30,7 @@ resource "aws_organizations_organizational_unit" "this" {
   parent_id = each.value.parent == "root" ? local.root_id : aws_organizations_organizational_unit.this[each.value.parent].id
 }
 
+# organization resource
 resource "aws_organizations_account" "this" {
   for_each = var.member_accounts
 

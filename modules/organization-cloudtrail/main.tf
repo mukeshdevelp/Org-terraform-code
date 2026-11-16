@@ -1,3 +1,4 @@
+# cloudtrail aws_organizations_account
 resource "aws_cloudtrail" "org" {
   name                          = var.trail_name
   s3_bucket_name                = var.s3_bucket_name

@@ -10,6 +10,7 @@ locals {
   policies_dir = "${path.module}/policies"
 }
 
+# Organization policy
 resource "aws_organizations_policy" "this" {
   for_each = var.policy_attachments
 
@@ -27,6 +28,7 @@ resource "aws_organizations_policy" "this" {
   tags = var.tags
 }
 
+# organization policy attachment
 resource "aws_organizations_policy_attachment" "this" {
   for_each = {
     for pair in flatten([

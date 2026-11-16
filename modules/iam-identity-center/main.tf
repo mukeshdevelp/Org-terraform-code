@@ -12,7 +12,10 @@ resource "aws_ssoadmin_permission_set" "this" {
   tags = var.tags
 }
 
-data "aws_ssoadmin_instances" "this" {}
+# single sign in instance
+data "aws_ssoadmin_instances" "this" {
+
+}
 
 resource "aws_ssoadmin_managed_policy_attachment" "this" {
   for_each = {
