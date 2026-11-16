@@ -1,0 +1,26 @@
+# Copy to terraform.tfvars and customize.
+
+primary_region   = "ap-south-1"
+approved_regions = ["ap-south-1", "ap-southeast-1"]
+
+owner_email = "platform@opstree.com"
+cost_center = "CC-1042"
+
+enable_organization            = true
+create_member_accounts         = true
+enable_bootstrap               = false
+enable_log_archive             = false
+enable_audit                   = false
+enable_network                 = false
+enable_finops                  = false
+enable_organization_cloudtrail = false
+
+member_accounts = {
+  audit = {
+    name      = "OPT-SEC-AUDIT-001"
+    email     = "aws+audit@opstree.com"
+    parent_ou = "security"
+  }
+}
+
+account_ids = {}

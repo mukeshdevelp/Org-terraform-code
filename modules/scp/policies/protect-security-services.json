@@ -1,0 +1,51 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyOrgTrailTampering",
+      "Effect": "Deny",
+      "Action": [
+        "cloudtrail:DeleteTrail",
+        "cloudtrail:StopLogging",
+        "cloudtrail:UpdateTrail"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/ops-tree:protected": "organization-trail"
+        }
+      }
+    },
+    {
+      "Sid": "DenyDisableGuardDuty",
+      "Effect": "Deny",
+      "Action": [
+        "guardduty:DeleteDetector",
+        "guardduty:DisassociateFromMasterAccount",
+        "guardduty:StopMonitoringMembers",
+        "guardduty:UpdateDetector"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenySecurityHubDisable",
+      "Effect": "Deny",
+      "Action": [
+        "securityhub:DeleteMembers",
+        "securityhub:DisassociateFromMasterAccount",
+        "securityhub:DisableSecurityHub"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyConfigAggregatorTamper",
+      "Effect": "Deny",
+      "Action": [
+        "config:DeleteConfigurationAggregator",
+        "config:DeleteConfigurationRecorder",
+        "config:StopConfigurationRecorder"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

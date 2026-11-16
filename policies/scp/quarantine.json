@@ -1,0 +1,26 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyAllExceptAssessment",
+      "Effect": "Deny",
+      "NotAction": [
+        "support:*",
+        "organizations:Describe*",
+        "organizations:List*",
+        "sts:GetCallerIdentity",
+        "iam:Get*",
+        "iam:List*",
+        "config:*",
+        "securityhub:*",
+        "guardduty:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalTag/ops-tree:quarantine-role": "assessment"
+        }
+      }
+    }
+  ]
+} 

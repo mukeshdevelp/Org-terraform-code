@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyNetworkPlaneChanges",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:DeleteTransitGateway",
+        "ec2:ModifyTransitGateway",
+        "ec2:DeleteTransitGatewayRouteTable",
+        "ec2:CreateVpnConnection",
+        "ec2:DeleteVpnConnection",
+        "ec2:CreateCustomerGateway",
+        "ec2:DeleteCustomerGateway",
+        "route53resolver:DeleteResolverEndpoint",
+        "route53resolver:DeleteResolverRule",
+        "ec2:DeleteIpam",
+        "ec2:DeleteIpamPool"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalTag/ops-tree:network-admin": "true"
+        }
+      }
+    }
+  ]
+}

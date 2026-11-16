@@ -1,0 +1,16 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyByDefault",
+      "Effect": "Deny",
+      "NotAction": [
+        "organizations:Describe*",
+        "organizations:List*",
+        "sts:GetCallerIdentity",
+        "support:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

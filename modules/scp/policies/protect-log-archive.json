@@ -1,0 +1,35 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyLogBucketDelete",
+      "Effect": "Deny",
+      "Action": [
+        "s3:DeleteBucket",
+        "s3:DeleteObject",
+        "s3:DeleteObjectVersion",
+        "s3:PutLifecycleConfiguration"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/ops-tree:plane": "log-archive"
+        }
+      }
+    },
+    {
+      "Sid": "DenyKMSKeyScheduleDelete",
+      "Effect": "Deny",
+      "Action": [
+        "kms:ScheduleKeyDeletion",
+        "kms:DisableKey"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/ops-tree:plane": "log-archive"
+        }
+      }
+    }
+  ]
+}
