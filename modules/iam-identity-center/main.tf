@@ -17,6 +17,7 @@ data "aws_ssoadmin_instances" "this" {
 
 }
 
+# attaches iam policies to iam identity center permission set
 resource "aws_ssoadmin_managed_policy_attachment" "this" {
   for_each = {
     for pair in flatten([

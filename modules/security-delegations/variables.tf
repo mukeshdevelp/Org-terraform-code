@@ -23,3 +23,20 @@ variable "config_s3_bucket_name" {
   type        = string
   default     = null
 }
+
+variable "password_max_age_days" {
+  description = "Maximum IAM password age in days (organization Config rule + management account policy)."
+  type        = number
+  default     = 30
+}
+
+variable "password_min_length" {
+  type    = number
+  default = 14
+}
+
+variable "access_key_max_age_days" {
+  description = "Maximum IAM access key age in days (ACCESS_KEYS_ROTATED org Config rule)."
+  type        = number
+  default     = 30
+}

@@ -68,10 +68,30 @@ module "scp" {
       source        = "deny-leave-organization.json"
       target_ou_ids = [module.organization[0].root_id]
     }
+    require-mfa = {
+      description   = "Require MFA for interactive and API access (inherited by all member accounts)"
+      source        = "require-mfa.json"
+      target_ou_ids = [module.organization[0].root_id]
+    }
+    protect-password-policy = {
+      description   = "Block weakening account password policy; pair with Config/Terraform 30-day max age"
+      source        = "protect-password-policy.json"
+      target_ou_ids = [module.organization[0].root_id]
+    }
+    protect-kms-key-rotation = {
+      description   = "Prevent disabling KMS automatic key rotation"
+      source        = "protect-kms-key-rotation.json"
+      target_ou_ids = [module.organization[0].root_id]
+    }
+    protect-iam-access-keys = {
+      description   = "Protect IAM access key lifecycle; pair with Config 30-day access key rotation"
+      source        = "protect-iam-access-keys.json"
+      target_ou_ids = [module.organization[0].root_id]
+    }
     deny-unapproved-regions = {
-      description   = "Restrict API activity to approved regions"
+      description   = "Restrict API activity to approved regions (Sandbox OU excluded)"
       source        = "deny-unapproved-regions.json.tpl"
-      target_ou_ids = values(module.organization[0].organizational_unit_ids)
+      target_ou_ids = local.non_sandbox_ou_ids
     }
     protect-security-services = {
       description   = "Protect organization security services and trail"

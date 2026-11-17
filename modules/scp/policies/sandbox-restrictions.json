@@ -1,5 +1,6 @@
 {
   "Version": "2012-10-17",
+  "Comment": "Sandbox OU: no region lock (deny-unapproved-regions is not attached to this OU). MFA/password/KMS SCPs inherit from root.",
   "Statement": [
     {
       "Sid": "DenyExpensiveServices",

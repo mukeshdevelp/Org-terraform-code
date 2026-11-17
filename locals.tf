@@ -101,4 +101,10 @@ locals {
   account_ids          = merge(local.vendored_account_ids, var.account_ids)
 
   organization_id = try(module.organization[0].organization_id, var.organization_id)
+
+  # Sandbox accounts may use any AWS Region — exclude only from region SCP.
+  non_sandbox_ou_ids = var.enable_organization ? [
+    for ou_key, ou_id in module.organization[0].organizational_unit_ids : ou_id
+    if ou_key != "sandbox"
+  ] : []
 }
